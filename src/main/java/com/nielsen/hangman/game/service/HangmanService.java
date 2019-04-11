@@ -7,32 +7,22 @@ import com.nielsen.hangman.game.model.Hangman;
 import com.nielsen.hangman.game.repository.HangmanRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
 import java.util.UUID;
 
 @Service
 public class HangmanService {
 
+    private final WordService wordService;
     private final HangmanRepository hangmanRepository;
 
-    public HangmanService(HangmanRepository hangmanRepository) {
+    public HangmanService(WordService wordService, HangmanRepository hangmanRepository) {
+        this.wordService = wordService;
         this.hangmanRepository = hangmanRepository;
     }
 
-    public Hangman startGame(){
-        return hangmanRepository.save(new Hangman(getRandomWord()));
-    }
-
-    private String getRandomWord(){
-        int rnd = new Random().nextInt(getWords().size());
-        return getWords().get(rnd);
-    }
-
-    private List<String> getWords(){
-        return Arrays.asList("Bonito", "Mochila", "Parafuso", "Marrom", "Caravela", "Cantil", "Moeda", "Planilha", "Quadrilha", "Penteadeira", "Cuia",
-                "Calças", "Faca", "Cinco", "Familia", "Chocolate", "Janela", "Sete", "Microfone", "Napolitano", "Carnauba", "Guitarra");
+    public Hangman startGame() {
+        var hangman = new Hangman(wordService.getRandomWord());
+        return hangmanRepository.save(hangman);
     }
 
     public Hangman existsCharacter(Character hunchChar, UUID identifier) {
@@ -79,7 +69,7 @@ public class HangmanService {
         return hangman.getWord().length() == hangman.getCorrectLetters();
     }
 
-    private boolean isEqualChar(Character original, Character simile){
+    private boolean isEqualChar(Character original, Character simile) {
         return Character.toLowerCase(original) == Character.toLowerCase(simile);
     }
 
