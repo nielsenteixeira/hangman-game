@@ -1,0 +1,34 @@
+server:
+  port: ${SERVER_PORT:9000}
+
+spring:
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    show-sql: false
+    hibernate:
+      ddl-auto: none
+      order_inserts: true
+      batch_size: 25
+      properties:
+        hbm2ddl: none
+      temp:
+        use_jdbc_metadata_defaults: false
+    generate-ddl: false
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
+    database: POSTGRESQL
+  flyway:
+    baseline-version: 1
+    baselineOnMigrate: true
+  servlet:
+    multipart:
+      max-request-size: 40MB
+      max-file-size: 40MB
+
+game:
+  words: game/words.txt
