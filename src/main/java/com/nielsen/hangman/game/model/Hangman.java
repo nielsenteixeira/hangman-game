@@ -2,10 +2,7 @@ package com.nielsen.hangman.game.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -13,8 +10,7 @@ public class Hangman extends BaseEntity {
     @JsonIgnore
     private String word;
     private String playerWord;
-    @ElementCollection
-    private List<Character> playerLetters;
+    private String playerLetters;
     private int wordLength;
     private UUID identifier;
     private int correctLetters;
@@ -27,7 +23,7 @@ public class Hangman extends BaseEntity {
     public Hangman(String word) {
         this.word = word;
         this.wordLength = word.length();
-        this.playerLetters = new ArrayList<>();
+        this.playerLetters = "";
         this.identifier = UUID.randomUUID();
         this.correctLetters = 0;
         this.win = false;
@@ -40,7 +36,7 @@ public class Hangman extends BaseEntity {
 
     private String initializePlayerWordTemplate(String word) {
         String template = "";
-        for(int i = 0; i< word.length(); i ++){
+        for (int i = 0; i< word.length(); i ++) {
             template += "-";
         }
         return template;
@@ -62,11 +58,11 @@ public class Hangman extends BaseEntity {
         this.playerWord = playerWord;
     }
 
-    public List<Character> getPlayerLetters() {
+    public String getPlayerLetters() {
         return playerLetters;
     }
 
-    public void setPlayerLetters(List<Character> playerLetters) {
+    public void setPlayerLetters(String playerLetters) {
         this.playerLetters = playerLetters;
     }
 
@@ -87,7 +83,7 @@ public class Hangman extends BaseEntity {
     }
 
     public void addPlayerLetter(Character character) {
-        this.playerLetters.add(character);
+        this.playerLetters = this.playerLetters + character + ", ";
     }
 
     public int getCorrectLetters() {
