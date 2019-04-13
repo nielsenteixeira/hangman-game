@@ -16,6 +16,15 @@
 
 	<properties>
 		<java.version>11</java.version>
+
+		<postgresql.version>42.2.1</postgresql.version>
+		<logback-classic.version>1.2.3</logback-classic.version>
+		<logback-json-classic.version>0.1.5</logback-json-classic.version>
+		<logback-jackson.version>0.1.5</logback-jackson.version>
+		<logstash-logback-encoder.version>5.3</logstash-logback-encoder.version>
+		<jul-to-slf4j.version>1.7.25</jul-to-slf4j.version>
+		<logback-core.version>1.2.3</logback-core.version>
+		<jackson-databind.version>2.9.4</jackson-databind.version>
 	</properties>
 
 	<dependencies>
@@ -35,11 +44,48 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.1</version>
+			<version>${postgresql.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-core</artifactId>
+		</dependency>
+
+		<!--LOG-->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<version>${logback-classic.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback.contrib</groupId>
+			<artifactId>logback-json-classic</artifactId>
+			<version>${logback-json-classic.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback.contrib</groupId>
+			<artifactId>logback-jackson</artifactId>
+			<version>${logback-jackson.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>${jul-to-slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-core</artifactId>
+			<version>${logback-core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>net.logstash.logback</groupId>
+			<artifactId>logstash-logback-encoder</artifactId>
+			<version>${logstash-logback-encoder.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson-databind.version}</version>
 		</dependency>
 	</dependencies>
 

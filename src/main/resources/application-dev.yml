@@ -8,11 +8,3 @@ spring:
     properties:
       hibernate:
         format_sql: true
-
-logging:
-  level:
-    com:
-      nielsen:
-        hangman: ${LOG_LEVEL:DEBUG}
-    org:
-      springframework: ${LOG_LEVEL:INFO}

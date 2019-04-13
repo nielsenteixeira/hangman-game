@@ -2,6 +2,9 @@ server:
   port: ${SERVER_PORT:9000}
 
 spring:
+  application:
+    name: hangman-game
+
   profiles:
     active: ${ACTIVE_PROFILE:dev}
   jpa:
@@ -32,3 +35,12 @@ spring:
 
 game:
   words: game/words.txt
+
+logging:
+  path: ${LOG_PATH:logs}
+  level:
+    com:
+      nielsen:
+        hangman: ${LOG_LEVEL:DEBUG}
+    org:
+      springframework: ${LOG_LEVEL:INFO}
