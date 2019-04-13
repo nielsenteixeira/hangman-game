@@ -90,3 +90,10 @@ return:
 ```
 
 If the player does not hit the word, the *answer* property will come with the correct answer.
+
+## Logs
+
+Path:
+```
+/logs
+```
